@@ -4,45 +4,42 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
-    EditText editTextPrzyklad;
+    ListView userListView;
+    ArrayList<String> uzytkownicy = new ArrayList<>();
+    EditText editText;
+    ArrayAdapter<String> adapterUzytkownicy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        editTextPrzyklad = findViewById(R.id.editText);
-
+        userListView = findViewById(R.id.userListView);
+        uzytkownicy.add("Jan Kowalski");
+        uzytkownicy.add("Dawid Nowak");
+        uzytkownicy.add("Anna Nowak");
+        adapterUzytkownicy = new ArrayAdapter<>(
+                MainActivity.this,
+                android.R.layout.simple_list_item_1,
+                uzytkownicy
+        );
+        userListView.setAdapter(adapterUzytkownicy);
+        editText = findViewById(R.id.editText);
     }
 
-    public void przepisz(View view) {
-        if(editTextPrzyklad.getText().toString()!="") {
-            String tekst = editTextPrzyklad.getText().toString();
-            Toast.makeText(MainActivity.this,
-                    tekst,
-                    Toast.LENGTH_SHORT).show();
-        }
-        RadioGroup radioGroupEgzamin = findViewById(R.id.egzaminRadioGroup);
-        int odpowiedzId = radioGroupEgzamin.getCheckedRadioButtonId();
-        if(odpowiedzId == R.id.radioButton){
-            Toast.makeText(MainActivity.this,
-                    "To nie Twój zawód",
-                    Toast.LENGTH_SHORT
-                    ).show();
-        }
-        else if(odpowiedzId == R.id.radioButton2){
-            Toast.makeText(MainActivity.this,
-                    "Ten egzamin już zdany",
-                    Toast.LENGTH_SHORT).show();
-        }
-        else{
-            Toast.makeText(MainActivity.this,
-                    "Powodzenia", Toast.LENGTH_SHORT).show();
-        }
 
+    public void dodaj(View view) {
+        String uzytkownik = editText.getText().toString();
+        uzytkownicy.add(uzytkownik);
+        adapterUzytkownicy.notifyDataSetChanged();
     }
 }

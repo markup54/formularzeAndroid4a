@@ -8,37 +8,18 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Jaki egzamin zdajesz zimą" />
-
-    <RadioGroup
-        android:id="@+id/egzaminRadioGroup"
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:text="Użytkownicy:" />
 
-        <RadioButton
-            android:id="@+id/radioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Inf.02"
-            android:layout_weight="1"/>
+    <ListView
+        android:id="@+id/userListView"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:entries="@array/user">
 
-        <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Inf.03"
-            android:layout_weight="1"/>
-
-        <RadioButton
-            android:id="@+id/radioButton3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Inf.04"
-            android:layout_weight="1"/>
-    </RadioGroup>
+    </ListView>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -48,19 +29,17 @@
         <EditText
             android:id="@+id/editText"
             android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
+
             android:ems="10"
-            android:hint="wpisz jakiś tekst"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:text="Name" />
 
         <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Przepisz"
-            android:onClick="przepisz"/>
+            android:onClick="dodaj"
+            android:text="Button" />
     </LinearLayout>
-
 </LinearLayout>
